@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>백강민 소개 페이지</title>
+
+  <style>
+    /* ===== 화이트 톤 테마 ===== */
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --card2: #f8fafc;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent2: #10b981;
+      --warn: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 48px;
+    }
+
+    header {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 22px 18px;
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+    }
+
+    .title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--text);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    main { margin-top: 18px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    section {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.04);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profile {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      overflow: hidden;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .chips {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chips li {
+      border: 1px solid var(--line);
+      background: rgba(16, 185, 129, 0.08);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .placeholder {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px dashed rgba(17, 24, 39, 0.25);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 14px;
+      color: rgba(17, 24, 39, 0.6);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .kpi div {
+      border: 1px solid var(--line);
+      background: rgba(245, 158, 11, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .kpi .k { color: var(--muted); font-size: 12px; }
+    .kpi .v { font-weight: 800; font-size: 16px; margin-top: 2px; }
+
+    @media (max-width: 520px) {
+      .kpi { grid-template-columns: 1fr; }
+      .avatar { width: 104px; height: 104px; }
+    }
+
+    /* ===== 기술 스택 & 경력 (깨짐 방지) ===== */
+    .stack-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .stack-table th,
+    .stack-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .stack-table th {
+      width: 140px;
+      background: #f1f5f9;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .stack-table tr:last-child th,
+    .stack-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stack-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
+    }
+
+    .stack-list li {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="title">
+        👋 안녕하세요, 백강민입니다!
+        <span class="badge">🧑‍💻 Profile</span>
+        <span class="badge">✨ 2025</span>
+      </h1>
+      <p class="sub">백강민 · 27살 · 정보통신공학</p>
+
+      <div class="kpi" aria-label="간단 요약">
+        <div>
+          <div class="k">💼 경력</div>
+          <div class="v">1년 10개월</div>
+        </div>
+        <div>
+          <div class="k">🛠️ 관심 분야</div>
+          <div class="v">Cloud / DevOps</div>
+        </div>
+        <div>
+          <div class="k">🎯 목표</div>
+          <div class="v">꾸준한 성장</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section aria-labelledby="intro">
+        <h2 id="intro">📝 자기 소개</h2>
+
+        <div class="profile">
+          <figure class="avatar">
+            <img src="images/avatar.png" alt="백강민 아바타 이미지" />
+          </figure>
+
+          <div>
+            <p class="meta">
+              안녕하세요. 저는 <strong>백강민</strong>입니다.<br />
+              전공은 <strong>정보통신공학</strong>이고, 클라우드/인프라 분야에 관심이 많습니다.
+            </p>
+
+            <ul class="chips" aria-label="관심 키워드">
+              <li>🧥 옷</li>
+              <li>📺 애니메이션</li>
+              <li>☁️ 클라우드</li>
+              <li>⚙️ 자동화</li>
+            </ul>
+
+            <p class="note">※ 소개 문구는 필요에 맞게 자유롭게 바꿔도 됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="stack">
+        <h2 id="stack">🧰 기술 스택 &amp; 경력</h2>
+
+        <table class="stack-table">
+          <thead>
+            <tr>
+              <th scope="col">구분</th>
+              <th scope="col">내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">기술 스택</th>
+              <td>
+                <ul class="stack-list">
+                  <li>☁️ AWS</li>
+                  <li>☸️ Kubernetes (k8s)</li>
+                  <li>🏗️ OpenStack</li>
+                  <li>🔁 CI/CD</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">경력</th>
+              <td>⏱️ 1년 10개월</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="note">추가로 다뤄본 기술/툴이 있으면 표에 행을 더 추가하면 됩니다.</p>
+      </section>
+
+      <section aria-labelledby="links">
+        <h2 id="links">🔗 외부 링크</h2>
+        <p class="meta">좋아하는 사이트/블로그 링크는 추후 등록 예정입니다.</p>
+
+        <div class="placeholder" aria-label="링크 자리">
+          ➕ 링크 추가 예정 (GitHub / Notion / Blog)
+        </div>
+      </section>
+
+      <section aria-labelledby="favorites">
+        <h2 id="favorites">❤️ 좋아하는 것 / 관심사</h2>
+        <ul>
+          <li>🧥 옷</li>
+          <li>📺 애니메이션</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 백강민</p>
+    </footer>
+  </div>
+</body>
+</html>
