@@ -12,14 +12,14 @@
       line-height: 1.5;
     }
 
+    /* 🔽 사진 간 간격 줄이기 */
     figure {
-      margin: 0 0 32px;
+      margin: 0 0 16px; /* 기존 32px → 16px */
     }
 
-    /* 정사각형 사진 영역 (크기 축소) */
     .photo-box {
       width: 100%;
-      max-width: 320px;     /* 🔹 크기 제한 */
+      max-width: 320px;
       aspect-ratio: 1 / 1;
       background: #f2f2f2;
       display: flex;
@@ -35,7 +35,7 @@
     }
 
     figcaption {
-      margin-top: 8px;
+      margin-top: 6px; /* 캡션도 살짝 줄임 */
       font-weight: 700;
     }
   </style>
