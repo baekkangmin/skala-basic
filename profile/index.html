@@ -127,12 +127,6 @@
       align-items: center;
     }
 
-    .divider{
-      height: 1px;
-      background: var(--line);
-      margin: 12px 0;
-    }
-
     /* 프로필 */
     .profile{
       display: flex;
@@ -172,7 +166,7 @@
       padding: 0;
       margin: 10px 0 0;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 8px;
     }
 
@@ -294,9 +288,9 @@
         <h2>📝 자기 소개</h2>
 
         <div class="profile">
-          <figure class="avatar">
-            <img src="profile.jpg" alt="백강민 프로필 이미지" />
-          </figure>
+        <div class="avatar">
+          <img src="profile.jpg" alt="백강민 프로필 이미지" />
+        </div>
 
           <div>
             <p class="name">백강민</p>
@@ -346,8 +340,6 @@
           <span class="pill">🔁 CI/CD</span>
         </div>
 
-        <br />
-
         <table>
           <tbody>
             <tr>
@@ -373,7 +365,7 @@
 
       <section class="card">
         <h2>❤️ 좋아하는 것 / 관심사</h2>
-        <ul class="chips" style="flex-direction: column;">
+        <ul class="chips">
           <li>🧥 패션</li>
           <li>📺 애니메이션</li>
           <li>🎮 LoL</li>
